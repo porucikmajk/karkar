@@ -1,0 +1,30 @@
+{% load static %}
+
+<title>Polls</title>
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<body>
+    <div class="container">
+        <h1>Polls:</h1>
+
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}!</p>
+            <form method="post" action="{% url 'polls:logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'polls:login' %}">Login</a> | <a href="{% url 'polls:register' %}">Register</a></p>
+        {% endif %}
+
+        {% if latest_question_list %}
+            <ul>
+            {% for question in latest_question_list %}
+                <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </div>
+</body>

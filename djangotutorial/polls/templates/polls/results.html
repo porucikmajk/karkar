@@ -1,0 +1,24 @@
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'polls/r-styles.css' %}">
+
+<body>
+    <div class="container">
+        <h1>{{ question.question_text }}</h1>
+        <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+            <ul>
+                {% for voter in choice.voters.all %}
+                    <li>{{ voter.username }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        </ul>
+        <a href="{% url 'polls:index' %}" class="button">Back to Main Page</a>
+        {% if user.is_staff %}
+            <a href="{% url 'polls:reset_voters' question.id %}" class="button">Reset Voters and votes</a>
+        {% endif %}
+    </div>
+</body>
