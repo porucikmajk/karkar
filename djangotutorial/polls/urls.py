@@ -12,6 +12,8 @@ urlpatterns = [
     path("<int:question_id>/results/", views.results, name="results"),
     # ex: /polls/5/vote/
     path("<int:question_id>/vote/", views.vote, name="vote"),
+    # ex: /admin/admin_view/
+    path("admin/admin_view/", views.admin_view, name="admin_view"),
 ]
 
 app_name = 'polls'

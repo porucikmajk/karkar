@@ -1,5 +1,19 @@
 from django.contrib import admin
+from django.urls import path
 from .models import Choice, Question
+from .views import admin_view
+
+class MyAdminSite(admin.AdminSite):
+    site_header = "Administrácia Webovej stránky"
+    site_title = "Admin Portal"
+    index_title = "Prístup povolený len daným používateľom"
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('admin_view/', self.admin_view, name='admin_view'),
+        ]
+        return custom_urls + urls
 
 class ChoiceInline(admin.StackedInline):
     model = Choice
@@ -28,4 +42,6 @@ reset_voters.short_description = "Reset voters"
 class ChoiceAdmin(admin.ModelAdmin):
     list_display = ["choice_text", "question", "votes"]
 
+admin_site = MyAdminSite(name="myadmin")
+admin.site = admin_site
 admin.site.register(Question, QuestionAdmin)

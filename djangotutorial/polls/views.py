@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 #ONLY ADMINS CAN ACCESS
 from .decorators import admin_required
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.admin.views.decorators import staff_member_required
 
 #AUTHENTICATION
 from django.shortcuts import render, redirect
@@ -40,6 +41,14 @@ def index(request):
 
 def detail(request, question_id):
     return HttpResponse("You're looking at question %s." % question_id)
+
+@staff_member_required
+def admin_view(request):
+    context = {
+        'title': "Admin View",
+        'message': "frfr",
+    }
+    render(request, 'admin/admin_view.html', context)
 
 @login_required
 def results(request, question_id):

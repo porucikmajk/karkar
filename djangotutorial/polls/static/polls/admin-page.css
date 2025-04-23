@@ -1,0 +1,62 @@
+body {
+    background-color: #f3f4f6; /* Softer background color for better readability */
+    font-family: 'Roboto', Arial, sans-serif; /* Modern font */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #4CAF50;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px; /* Limit paragraph width for better readability */
+    line-height: 1.8;
+}
+
+a {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Smooth hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+a:hover {
+    background-color: #3e8e41;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Card-like container */
+}
