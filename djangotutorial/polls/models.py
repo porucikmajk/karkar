@@ -34,3 +34,12 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
     
+class Candidate(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+    party = models.CharField(max_length=100)
+    biography = models.TextField()
+    photo = models.ImageField(upload_to='candidates/')
+    
+    def __str__(self):
+        return self.name

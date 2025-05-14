@@ -21,20 +21,23 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+#CANDIDATE
+from .models import Candidate
+
 #MISC
 from django.utils import timezone
-
 from django.urls import reverse
 from django.db.models import F
-
 from django.views import generic
-
 from django.shortcuts import render
-
 from .models import Choice, Question
 
 def is_admin(user):
     return user.is_staff
+
+def main_page(request):
+    candidates = Candidate.objects.all()
+    return render(request, 'candidates/main_page.html', {'candidates': candidates})
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")

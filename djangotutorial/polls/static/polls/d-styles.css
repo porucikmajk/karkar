@@ -1,47 +1,154 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
     background: white;
-    padding: 2em;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2.5em 2em 2em 2em;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 123, 255, 0.10), 0 1.5px 6px rgba(0,0,0,0.07);
     max-width: 600px;
     width: 100%;
     text-align: center;
+    position: relative;
+}
+
+.site-header {
+    margin-bottom: 1.5em;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 0.5em;
 }
 
 h1 {
-    font-size: 2em;
-    margin-bottom: 1em;
-    color: #333333;
+    font-size: 2.2em;
+    margin: 0 0 0.2em 0;
+    color: #007BFF;
+    letter-spacing: 1px;
 }
 
-form {
+.tagline {
+    font-size: 1.1em;
+    color: #4CAF50;
+    margin-bottom: 0.5em;
+}
+
+.poll-question, h2 {
+    color: #333;
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    letter-spacing: 0.5px;
+}
+
+.error-message {
+    color: #d32f2f;
+    background: #ffeaea;
+    border-radius: 6px;
+    padding: 0.7em 1em;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+
+.vote-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 1em;
 }
 
-.button {
-    background: #007BFF;
+.choices-list {
+    width: 100%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+}
+
+.choice-item {
+    background: #f7fbff;
+    border-radius: 7px;
+    padding: 0.7em 1em;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+    cursor: pointer;
+    border: 1.5px solid #e0eafc;
+}
+
+.choice-item:hover {
+    background: #eaf4ff;
+    border-color: #007BFF;
+}
+
+.choice-item input[type="radio"] {
+    margin-right: 0.8em;
+    accent-color: #007BFF;
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.button, button {
+    background: linear-gradient(90deg, #007BFF 60%, #4CAF50 100%);
     color: white;
     border: none;
-    padding: 0.5em 1em;
-    text-decoration: none;
+    padding: 0.7em 1em;
     font-size: 1em;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.07);
+    transition: background 0.2s, transform 0.2s;
+    width: 100%;
+    max-width: 250px;
     display: inline-block;
-    margin-top: 1em;
 }
 
-.button:hover {
-    background: #0056b3;
+.button.secondary {
+    background: #f1f1f1;
+    color: #007BFF;
+    border: 1.5px solid #b3d1f7;
+    margin-top: 0.5em;
+    box-shadow: none;
+}
+
+.button:hover, button:hover {
+    background: linear-gradient(90deg, #0056b3 60%, #388e3c 100%);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.button.secondary:hover {
+    background: #e3f0fc;
+    color: #0056b3;
+    border-color: #007BFF;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 2em;
+    color: #aaa;
+    font-size: 0.95em;
+    text-align: center;
+    letter-spacing: 0.5px;
 }

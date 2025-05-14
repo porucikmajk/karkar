@@ -1,21 +1,39 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'polls/d-styles.css' %}">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ question.question_text }} | VoteNow</title>
+    <link rel="stylesheet" href="{% static 'polls/d-styles.css' %}">
+</head>
 <body>
     <div class="container">
-        <h1>{{ question.question_text }}</h1>
+        <div class="site-header">
+            <img src="{% static 'polls/vote-logo.png' %}" alt="VoteNow Logo" class="logo" />
+            <h1>VoteNow</h1>
+            <p class="tagline">Your Voice, Your Choice!</p>
+        </div>
+        <h2 class="poll-question">{{ question.question_text }}</h2>
         {% if error_message %}
-            <p><strong>{{ error_message }}</strong></p>
+            <p class="error-message"><strong>{{ error_message }}</strong></p>
         {% endif %}
-        <form action="{% url 'polls:vote' question.id %}" method="post">
+        <form action="{% url 'polls:vote' question.id %}" method="post" class="vote-form">
             {% csrf_token %}
-            {% for choice in question.choice_set.all %}
-                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-            {% endfor %}
-            <input type="submit" value="Vote">
+            <div class="choices-list">
+                {% for choice in question.choice_set.all %}
+                    <div class="choice-item">
+                        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="button">Vote</button>
         </form>
-        <a href="{% url 'polls:index' %}" class="button">Back to Main Page</a>
+        <a href="{% url 'polls:index' %}" class="button secondary">Back to Main Page</a>
+        <br>
+        <br>
+        &copy; 2025 VoteNow. All rights reserved.
     </div>
 </body>
+</html>

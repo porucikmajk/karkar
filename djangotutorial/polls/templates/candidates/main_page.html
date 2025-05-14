@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidates | VoteNow</title>
+    <link rel="stylesheet" href="{% static 'polls/main-page.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="site-header">
+            <img src="{% static 'polls/vote-logo.png' %}" alt="VoteNow Logo" class="logo" />
+            <h1>VoteNow</h1>
+            <p class="tagline">Your Voice, Your Choice!</p>
+        </div>
+        <h2 class="candidates-title">Meet the Candidates</h2>
+        <div class="candidates-list">
+            {% for candidate in candidates %}
+            <div class="candidate-card">
+                <img src="{{ candidate.photo.url }}" alt="{{ candidate.name }} Photo" class="candidate-photo" />
+                <h3 class="candidate-name">{{ candidate.name }}</h3>
+                <p class="candidate-info"><strong>Age:</strong> {{ candidate.age }}</p>
+                <p class="candidate-info"><strong>Party:</strong> {{ candidate.party }}</p>
+                <p class="candidate-bio">{{ candidate.biography }}</p>
+            </div>
+            {% empty %}
+            <p>No candidates available at this time.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'polls:index' %}" class="button secondary">Back to Main Page</a>
+        <br>
+        &copy; 2025 VoteNow. All rights reserved.
+    </div>
+</body>
+</html>

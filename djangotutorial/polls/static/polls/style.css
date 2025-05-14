@@ -1,49 +1,137 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
     background: white;
-    padding: 2em;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2.5em 2em 2em 2em;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 123, 255, 0.10), 0 1.5px 6px rgba(0,0,0,0.07);
     max-width: 600px;
     width: 100%;
     text-align: center;
+    position: relative;
 }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 1em;
-    color: #333333;
+.site-header {
+    margin-bottom: 1.5em;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
     margin-bottom: 0.5em;
 }
 
-a {
-    text-decoration: none;
+h1 {
+    font-size: 2.2em;
+    margin: 0 0 0.2em 0;
     color: #007BFF;
-    font-size: 1.2em;
+    letter-spacing: 1px;
 }
 
-a:hover {
+.tagline {
+    font-size: 1.1em;
+    color: #4CAF50;
+    margin-bottom: 0.5em;
+}
+
+.welcome {
+    color: #388e3c;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
+
+h2, .polls-title {
+    color: #333;
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    letter-spacing: 0.5px;
+}
+
+.poll-list, ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1.5em;
+}
+
+.poll-list li {
+    margin-bottom: 1em;
+}
+
+.poll-link, a.poll-link {
+    display: block;
+    background: #f7fbff;
+    color: #007BFF;
+    font-size: 1.15em;
+    padding: 0.8em 1em;
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.07);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    font-weight: 500;
+}
+
+.poll-link:hover, a.poll-link:hover {
+    background: #eaf4ff;
     color: #0056b3;
+    transform: translateY(-2px) scale(1.02);
+    text-decoration: none;
 }
 
-p {
-    color: #555555;
+.button, button {
+    background: linear-gradient(90deg, #007BFF 60%, #4CAF50 100%);
+    color: white;
+    border: none;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.07);
+    transition: background 0.2s, transform 0.2s;
+    width: 100%;
+    max-width: 250px;
+    display: inline-block;
+}
+
+.button.secondary {
+    background: #f1f1f1;
+    color: #007BFF;
+    border: 1.5px solid #b3d1f7;
+    margin-top: 0.5em;
+    box-shadow: none;
+}
+
+.button:hover, button:hover {
+    background: linear-gradient(90deg, #0056b3 60%, #388e3c 100%);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.button.secondary:hover {
+    background: #e3f0fc;
+    color: #0056b3;
+    border-color: #007BFF;
+}
+
+.no-polls {
+    color: #888;
+    font-size: 1.1em;
+    margin: 2em 0 1em 0;
+}
+
+footer {
+    margin-top: 2em;
+    color: #aaa;
+    font-size: 0.95em;
+    text-align: center;
+    letter-spacing: 0.5px;
 }

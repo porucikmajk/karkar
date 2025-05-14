@@ -3,6 +3,8 @@ from django.urls import path
 from .models import Choice, Question
 from .views import admin_view
 
+from .models import Candidate
+
 class MyAdminSite(admin.AdminSite):
     site_header = "Administrácia Webovej stránky"
     site_title = "Admin Portal"
@@ -45,3 +47,4 @@ class ChoiceAdmin(admin.ModelAdmin):
 admin_site = MyAdminSite(name="myadmin")
 admin.site = admin_site
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(Candidate)

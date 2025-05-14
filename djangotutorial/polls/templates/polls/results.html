@@ -1,24 +1,41 @@
 {% load static %}
 
-
-<link rel="stylesheet" href="{% static 'polls/r-styles.css' %}">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results | VoteNow</title>
+    <link rel="stylesheet" href="{% static 'polls/r-styles.css' %}">
+</head>
 <body>
     <div class="container">
-        <h1>{{ question.question_text }}</h1>
-        <ul>
+        <div class="site-header">
+            <img src="{% static 'polls/vote-logo.png' %}" alt="VoteNow Logo" class="logo" />
+            <h1>VoteNow</h1>
+            <p class="tagline">Your Voice, Your Choice!</p>
+        </div>
+        <h2 class="results-title">{{ question.question_text }}</h2>
+        <ul class="results-list">
         {% for choice in question.choice_set.all %}
-            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-            <ul>
-                {% for voter in choice.voters.all %}
-                    <li>{{ voter.username }}</li>
-                {% endfor %}
-            </ul>
+            <li class="result-choice">
+                <span class="choice-text">{{ choice.choice_text }}</span>
+                <span class="votes">{{ choice.votes }} vote{{ choice.votes|pluralize }}</span>
+                {% if choice.voters.all %}
+                <ul class="voters-list">
+                    {% for voter in choice.voters.all %}
+                        <li class="voter">{{ voter.username }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
         {% endfor %}
         </ul>
-        <a href="{% url 'polls:index' %}" class="button">Back to Main Page</a>
+        <a href="{% url 'polls:index' %}" class="button secondary">Back to Main Page</a>
         {% if user.is_staff %}
-            <a href="{% url 'polls:reset_voters' question.id %}" class="button">Reset Voters and votes</a>
+            <a href="{% url 'polls:reset_voters' question.id %}" class="button">Reset Voters and Votes</a>
         {% endif %}
+        <br>
+        &copy; 2025 VoteNow. All rights reserved.
     </div>
 </body>
+</html>
