@@ -16,7 +16,7 @@ urlpatterns = [
     path("register/", views.register_view, name='register'),
     path("logout/", LogoutView.as_view(next_page='polls:index'), name='logout'),
     path("<int:question_id>/reset_voters", views.reset_voters, name="reset_voters"),
-    path("admin/admin_view/", views.admin_view, name="admin_view"),
+    path("", views.admin_view, name="admin_view"),
     path("candidates/", views.main_page, name="main_page"),
 ]
 
