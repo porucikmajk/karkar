@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Pending | VoteNow</title>
+    <link rel="stylesheet" href="{% static 'polls/email-styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Almost Complete!</h2>
+        <p>We've sent a verification link to your email address. Please check your inbox and click the link to activate your account.</p>
+        <a href="{% url 'polls:index' %}" class="button secondary">Back to Main Page</a>
+    </div>
+</body>
+</html>

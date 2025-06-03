@@ -18,6 +18,7 @@ urlpatterns = [
     path("<int:question_id>/reset_voters", views.reset_voters, name="reset_voters"),
     path("", views.admin_view, name="admin_view"),
     path("candidates/", views.main_page, name="main_page"),
+    path('activate/<int:uid>/<str:token>/', views.activate_view, name='activate'),
 ]
 
 if settings.DEBUG:

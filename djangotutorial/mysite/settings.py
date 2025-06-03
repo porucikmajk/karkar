@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'captcha',
     "polls.apps.PollsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -49,6 +50,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#email_settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'votenowproject@gmail.com'         # <-- change this to your Gmail address
+EMAIL_HOST_PASSWORD = 'mxlpsiolgstpnucl'           # <-- change this to your 16-character app password
+DEFAULT_FROM_EMAIL = 'VoteNow <votenowproject@gmail.com>'  # <-- change this to your Gmail address
 
 ROOT_URLCONF = 'mysite.urls'
 

@@ -21,6 +21,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+#EMAIL VERIFICATION
+from django.urls import reverse
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.conf import settings
+
 #CANDIDATE
 from .models import Candidate
 
@@ -127,20 +134,59 @@ def login_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        password2 = request.POST['password2']
-        if password == password2:
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Username already exists')
-            else:
-                user = User.objects.create_user(username=username, password=password)
-                user.save()
-                login(request, user)
-                return redirect('polls:index')
-        else:
-            messages.error(request, 'Passwords do not match')
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('password', '')
+
+        # Check for blank username
+        if not username:
+            return render(request, 'polls/register.html', {
+                'error': 'Username cannot be blank.'
+            })
+
+        # Check for existing username
+        if User.objects.filter(username=username).exists():
+            return render(request, 'polls/register.html', {
+                'error': 'Username already exists. Please choose another.'
+            })
+
+        # Check for existing email
+        if User.objects.filter(email=email).exists():
+            return render(request, 'polls/register.html', {
+                'error': 'Email already registered. Please use another email.'
+            })
+
+        # Create the user as inactive
+        user = User.objects.create_user(username=username, email=email, password=password, is_active=False)
+
+        # Generate activation token and link
+        token = default_token_generator.make_token(user)
+        activation_link = request.build_absolute_uri(
+            reverse('polls:activate', kwargs={'uid': user.pk, 'token': token})
+        )
+
+        # Send activation email
+        send_mail(
+            'Activate your VoteNow account',
+            f'Click the link to activate your account: {activation_link}',
+            settings.DEFAULT_FROM_EMAIL,
+            [email],
+        )
+        return render(request, 'polls/registration_pending.html')
     return render(request, 'polls/register.html')
+
+def activate_view(request, uid, token):
+    from django.contrib.auth.tokens import default_token_generator
+    from django.contrib.auth.models import User
+    try:
+        user = User.objects.get(pk=uid)
+        if default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            return render(request, 'polls/activation_success.html')
+    except User.DoesNotExist:
+        pass
+    return render(request, 'polls/activation_failed.html')
 
 class AdminRequiredMixin(UserPassesTestMixin):
     def test_func(self):

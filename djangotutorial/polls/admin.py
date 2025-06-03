@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from .models import Choice, Question
 from .views import admin_view
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
 from .models import Candidate
 
@@ -48,3 +50,4 @@ admin_site = MyAdminSite(name="myadmin")
 admin.site = admin_site
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Candidate)
+admin_site.register(User, UserAdmin)
